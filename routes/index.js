@@ -5,11 +5,11 @@ const weather = require('../apis/weather');
 const fileApi = require('../apis/file');
 
 /* GET weather API */
-router.get('/weather', (req, res) => {
+router.get('/weather', (req, res, next) => {
   const city = req.query.city;
 
   if (city === undefined || city === '') {
-    res.status(400).send('Bad Request: You must specify a city');
+    next(createError(400, 'Bad Request: You must specify a city'));
   }
   
   weather.call(city, (data) => {
