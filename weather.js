@@ -13,6 +13,7 @@ if(args.length === 0 || args === null) {
 //runs when a city with multiple names is provided eg: New York
 else if(args.length >= 1) {
     city = args.reduce((prev, arg)=>{
+        // %20 is http url code for spaces
         prev = prev + "%20" + arg;
         return prev;
     });
@@ -21,13 +22,19 @@ else {
     city = args[0];
 }
 
-console.log(city);
-
 /* Construct the url with:
     City: based on user passed args
     Units: will be given in imperial
     AppId: is the Token Key
 */
-let url = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${keys.weather}`;
+let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${keys.weather}`;
 
 /* Make API request */
+http.get(url, (res)=>{
+    res.on('data', (data)=>{
+        obj = JSON.parse(data);
+        cleanCity = city.replace("%20", " ");
+        console.log(`Longitude: ${obj.coord.lon} || Latitude: ${obj.coord.lat}`)
+        console.log(`It is currently ${obj.main.temp} Degrees Farenheit in ${cleanCity}`);
+    });
+});
