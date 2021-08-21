@@ -2,9 +2,26 @@ const mongoose = require('mongoose');
 const Usr = mongoose.model('User');
 
 const createUser = (req, res) =>{ 
-    res
-      .status(200)
-      .json({"status" : "success"});
+    //Make sure we only accept JSON
+    if(req.get('Content-Type') !== 'application/json') {
+        return res
+            .status(400)
+            .json({
+                "Bad Request" : "Content must be JSON"
+            });
+    }
+    Usr.create(req.body, (err, user)=> {
+        if (err) {
+            res
+              .status(400)
+              .json(err)
+        }
+        else {
+            res
+              .status(201)
+              .json(user);
+        }
+    });
 };
 
 const getUser = (req, res) => {
