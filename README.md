@@ -3,25 +3,103 @@ This serves as the repository into which I will commit my answers to the technic
 
 I will be adding more information to this ReadMe as the need arises and as I start completing the excercises.
 
-The code will be divided into 3 major modules with their own script outlined as follows:
+The code will be divided into 3 major modules with their own url outlined as follows:
+
+# API Reference
 
 ## 1. City Module
-Will allow a user to pass a City name as an argument and will return that city's latitude, longitude, and current temperature.
 
 <i>This script is meant to complete exercise 1.</i>
 
+### Basic usage.
+
+<b>http://{DomainAddress}:3000/weather?city={NameOfCity}</b>
+
+In which case you have the following:
+
+1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+2. {NameOfCity} : the name of the city whose weather you want to query. If the city is composed of multiple words, add a '%20' to replace any spaces. For instance, 'New York' would become 'New%20York'.
+
+### <i> RETURNS </i>
+
+JSON formatted response. With longitude, latitude, and current temperature in Farenheit. 
+Example template:
+
+  {<br>
+    "lon" : "00"<br>
+    "lat" : "00"<br>
+    "temp" : "00"<br>
+  }<br>
+
 ## 2. File Module
-Will allow the user to specify the name of a file which will be "echoed" or diplayed back to the user. 
-If no absolute path is suplied, the module will look relative to it's current directory. If no such file exists, the user will be notified and the program will exit gracefully.
 
 <i>This script is meant to complete exercise 2.</i>
 
+### Basic usage.
+
+<b>http://{DomainAddress}:3000/file?name={FileName}</b>
+
+In which case you have the following:
+
+1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+2. {FileName} : The name of 4 possible text files to query:
+
+FILE NAME | FILE CONTETS
+----------|--------------------
+Hamlet    | Shakespear's famous Hamlet Soliloquy "To be, or not to be"
+Quixote   | The first chapter of Miguel de Cervantes's famous novella Don Quixote
+Pi        | Many digits of pi. How many? Don't know, but it's a lot.
+Lorem     | A bulk of "lorem ipsum" generated code.
+  
+### <i> RETURNS </i>
+
+Plain text response with the contents of the file as specified above.
+
 ## 3. User Storage Module
-The most complex of the 3 modules. It will allow the user to post data, and to query data from a database. 
-If the user chooses to post data, they may supply a JSON file to be stored in the database, or they may enter an interactive mode in which they will be prompted for the information.
+The most complex of the 3 modules. It will allows the user to post data, and to query data from a database. 
+
+### Basic usage. POST Request
 
 <i>This serves to complete exercise 3.</i>
 
-If the user chooses to query the data, they must supply a valid user ID as a script argument. The information of that specific user id will be displayed. If userId cannot be found in the database, user will be notified.
+<b>http://{DomainAddress}:3000/users</b>
+
+In which case you have the following:
+
+1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+
+You must send a JSON formatted POST request to be stored in the database. (Content-Type must be application/json).
+The post request body must have the following structure.
+
+  {<br>
+    "userId" : 000<br>
+    "name" : "John"<br>
+    "lastName" : "Doe"<br>
+  }<br>
+  
+ In this case, userId must be a unique number to identify the user. If a userId that already exists in the database is sent, server will return an error response.
+ 
+ "Name" and "lastName" can be any variable length string.
+
+### Basic usage. GET Request
 
 <i>This is meant to complete exercise 4.</i>
+
+<b>http://{DomainAddress}:3000/users?uid={userId}</b>
+
+In which case you have the following:
+
+1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+2. {userId} : The number representing the "userId" field of a user document in the database.
+
+### <i> RETURNS </i>
+
+JSON formatted response containing the specific user document. Formatted as follows: 
+  
+  {<br>
+    "userId" : 000<br>
+    "name" : "John"<br>
+    "lastName" : "Doe"<br>
+  }<br>
+  
+If "userId" does not exist in the database, the service will return an error response.
