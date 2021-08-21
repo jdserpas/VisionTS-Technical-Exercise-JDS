@@ -17,19 +17,21 @@ The code will be divided into 3 major modules with their own url outlined as fol
 
 In which case you have the following:
 
-1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
-2. {NameOfCity} : the name of the city whose weather you want to query. If the city is composed of multiple words, add a '%20' to replace any spaces. For instance, 'New York' would become 'New%20York'.
+1. <b><i>{DomainAddress}</b></i> : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+2. <b><i>{NameOfCity}</b></i> : the name of the city whose weather you want to query. If the city is composed of multiple words, add a '%20' to replace any spaces. For instance, 'New York' would become 'New%20York'.
 
 ### <i> RETURNS </i>
 
 JSON formatted response. With longitude, latitude, and current temperature in Farenheit. 
 Example template:
 
-  {<br>
-    "lon" : "00"<br>
-    "lat" : "00"<br>
-    "temp" : "00"<br>
-  }<br>
+```
+  {
+    "lon" : "00"
+    "lat" : "00"
+    "temp" : "00"
+  }
+```
 
 ## 2. File Module
 
@@ -41,8 +43,8 @@ Example template:
 
 In which case you have the following:
 
-1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
-2. {FileName} : The name of 4 possible text files to query:
+1. <b><i>{DomainAddress}</b></i> : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+2. <b><i>{FileName}</b></i> : The name of 4 possible text files to query:
 
 FILE NAME | FILE CONTETS
 ----------|--------------------
@@ -66,16 +68,18 @@ The most complex of the 3 modules. It will allows the user to post data, and to 
 
 In which case you have the following:
 
-1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+1. <b><i>{DomainAddress}</b></i> : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
 
 You must send a JSON formatted POST request to be stored in the database. (Content-Type must be application/json).
 The post request body must have the following structure.
 
-  {<br>
-    "userId" : 000<br>
-    "name" : "John"<br>
-    "lastName" : "Doe"<br>
-  }<br>
+```
+  {
+    "userId" : 000
+    "name" : "John"
+    "lastName" : "Doe"
+  }
+ ```
   
  In this case, userId must be a unique number to identify the user. If a userId that already exists in the database is sent, server will return an error response.
  
@@ -89,17 +93,19 @@ The post request body must have the following structure.
 
 In which case you have the following:
 
-1. {DomainAddress} : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
-2. {userId} : The number representing the "userId" field of a user document in the database.
+1. <b><i>{DomainAddress}</b></i> : the IP or associated Domain Name of the machine running the process. If testing from same machine this is "localhost".
+2. <b><i>{userId}</b></i> : The number representing the "userId" field of a user document in the database.
 
 ### <i> RETURNS </i>
 
 JSON formatted response containing the specific user document. Formatted as follows: 
   
-  {<br>
-    "userId" : 000<br>
-    "name" : "John"<br>
-    "lastName" : "Doe"<br>
-  }<br>
+```
+  {
+    "userId" : 000
+    "name" : "John"
+    "lastName" : "Doe"
+  }
+ ```
   
 If "userId" does not exist in the database, the service will return an error response.
