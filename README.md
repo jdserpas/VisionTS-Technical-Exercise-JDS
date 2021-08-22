@@ -1,7 +1,19 @@
 # VisionTS-Technical-Exercise-JDS
 This serves as the repository into which I will commit my answers to the technical excercises provided for my job assesment. I hope everything is found to be satisfactory.
 
-I will be adding more information to this ReadMe as the need arises and as I start completing the excercises.
+There's 2 considerations to be had:
+
+First, this app assumes your machine is running MongoDB on port 27017.
+
+Second, this repository is missing 1 file which is the "keys.js" file. This file simply holds the private key used to access the weather API. If you wish to clone this repo to run it on your own you can recreate this file by registering at https://openweathermap.org/ and creating a file called __keys.js__ in the root folder and adding the following:
+```
+const weather = "{Your Private Key Here}";
+
+module.exports = {
+    weather
+};
+```
+Where you substitute {Your Private Key Here} with your actual key token.
 
 The code will be divided into 3 major modules with their own url outlined as follows:
 
