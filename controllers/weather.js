@@ -1,4 +1,4 @@
-const weather = require('../apis/weather');
+const weather = require('../models/weather');
 
 const getWeather = (req, res) => {
     const city = req.query.city;

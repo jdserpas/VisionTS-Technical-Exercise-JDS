@@ -28,7 +28,6 @@ const getUser = (req, res) => {
     Usr
       .find({userId : req.query.uid})
       .exec((err, user) => {
-        console.log(user);
         if (!user) {
             return res
                 .status(404)
@@ -41,7 +40,6 @@ const getUser = (req, res) => {
                 .status(500)
                 .json(err);
         }
-        console.log(user);
         res
           .status(200)
           .json(user);

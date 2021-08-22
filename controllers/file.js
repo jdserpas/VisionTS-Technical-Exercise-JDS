@@ -1,4 +1,4 @@
-const fileApi = require('../apis/file');
+const fileApi = require('../models/file');
 
 const getFile = (req, res) => {
     const fileName = req.query.name;
