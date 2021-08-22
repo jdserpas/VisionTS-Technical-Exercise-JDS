@@ -3,7 +3,7 @@ const fileApi = require('../models/file');
 const getFile = (req, res) => {
     const fileName = req.query.name;
   
-    // The user made a bad request. Set Response Code accordingly
+    // User must provide name query parameter
     if (fileName === undefined || fileName === '') {
         return res
           .status(400)
@@ -12,6 +12,7 @@ const getFile = (req, res) => {
           });
     }
   
+    // Calls Model
     fileApi.call(fileName, (hadError, data) =>{
       // Runs if file read ran into trouble. Sets Response Code accordingly
       if (hadError){
