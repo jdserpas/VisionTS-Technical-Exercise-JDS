@@ -3,6 +3,7 @@ const weather = require('../models/weather');
 const getWeather = (req, res) => {
     const city = req.query.city;
   
+    //User MUST provide city query parameter
     if (city === undefined || city === '') {
         return res
           .status(400)
@@ -11,6 +12,7 @@ const getWeather = (req, res) => {
           });
     }
     
+    //Call model
     weather.call(city, (data) => {
       res.json(data);
     })

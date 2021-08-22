@@ -36,14 +36,18 @@ const call = (city, fn) => {
         error.err = true;
         error.code = 400;
         error.message = "City was not provided or was formatted incorrectly. Please check documentation";
-        return error;
+        return fn(error);
     }
     
     /* Make API request */
     http.get(url, (res)=>{
         res.on('data', (data)=>{
             obj = JSON.parse(data);
-            
+            //check if resource couldn't be found
+            if(obj.cod === "404") {
+                return fn(obj);
+            }
+
             let weather = {};
             weather.lon = obj.coord.lon;
             weather.lat = obj.coord.lat;
