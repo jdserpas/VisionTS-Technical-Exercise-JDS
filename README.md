@@ -58,7 +58,9 @@ Lorem     | A bulk of "lorem ipsum" generated code.
 Plain text response with the contents of the file as specified above.
 
 ## 3. User Storage Module
-The most complex of the 3 modules. It will allows the user to post data, and to query data from a database. 
+The most complex of the 3 modules. It will allows the user to post data, and to query data from a database.
+
+**It assumes MongoDB is running on port 27017**
 
 ### Basic usage. POST Request
 
