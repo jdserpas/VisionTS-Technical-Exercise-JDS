@@ -1,5 +1,5 @@
 # VisionTS-Technical-Exercise-JDS
-This serves as the repository into which I will commit my answers to the technical excercises provided for my job assesment. I hope everything is found to be satisfactory.
+This serves as the repository into which I will commit my answers to the technical excercises provided for my assesment. I hope everything is found to be satisfactory.
 
 There's 2 considerations to be had:
 
